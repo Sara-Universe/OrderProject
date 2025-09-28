@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SimpleExample.Data;
+using SimpleExample.Enums;
 using SimpleExample.Infrastructure.Converters;
 using SimpleExample.Infrastructure.Interceptors;
-using SimpleExample.Models;
 using SimpleExample.Profiles;
 using SimpleExample.Repositories;
 using SimpleExample.Services;
@@ -57,6 +57,7 @@ builder.Services.AddDbContext<MyDbContext>((serviceProvider, optionsBuilder) =>
 var mapperConfig = new MapperConfiguration(cfg =>
 {
     cfg.AddProfile<OrderProfiles>();
+    cfg.AddProfile<CustomerProfile>();
 });
 
 // Create IMapper instance
@@ -67,14 +68,17 @@ builder.Services.AddSingleton(mapper);
 
 
 builder.Services.AddScoped<OrderService>();
-builder.Services.AddScoped(typeof(GenericRepository<>));
+builder.Services.AddScoped<CustomerService>();
 
+builder.Services.AddScoped(typeof(GenericRepository<>));
+builder.Services.AddScoped<CustomerRepository>();
+builder.Services.AddScoped<OrderRepository>();
 // Add services to the container.
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.Converters.Add(new SafeEnumConverter<OrderStatus>());
+        options.JsonSerializerOptions.Converters.Add(new SafeEnumConverter<PaymentMethod>());
     });
 
 builder.Services.AddOpenApi();

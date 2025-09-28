@@ -49,5 +49,42 @@ namespace SimpleExample.Controllers
             return Ok(_orderService.GetById(id));
         }
 
+        [HttpGet("MonthlyRevenue")]
+        public IActionResult GetMonthlyRevenue()
+        {
+            try
+            {
+                var report = _orderService.GetMonthlyRevenue();
+                return Ok(report);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while generating the report.", detail = ex.Message });
+            }
+        }
+
+        [HttpGet("TopCustomers")]
+        public IActionResult GetTopCustomers()
+        {
+            try
+            {
+                var result = _orderService.GetTopCustomers();
+                return Ok(result);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while fetching top customers.", detail = ex.Message });
+            }
+        }
+
+
     }
 }

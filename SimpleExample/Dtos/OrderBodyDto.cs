@@ -1,4 +1,4 @@
-﻿using SimpleExample.Models;
+﻿using SimpleExample.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace SimpleExample.Dtos
@@ -13,7 +13,9 @@ namespace SimpleExample.Dtos
         public decimal TotalAmount { get; set; }
 
         [Required(ErrorMessage = "Status is required")]
-        [EnumDataType(typeof(OrderStatus), ErrorMessage = "Invalid order status")]
-        public OrderStatus Status { get; set; }
+        [EnumDataType(typeof(PaymentMethod), ErrorMessage = "Invalid order status")]
+        public PaymentMethod Payment { get; set; }
+        [Required(ErrorMessage = "CustomerId is required")]
+        public int CustomerId { get; set; }
     }
 }
