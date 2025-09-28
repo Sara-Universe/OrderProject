@@ -62,7 +62,20 @@ namespace SimpleExample.Services
             return customers;
         }
 
+        public List<CustomerAverageDto> GetAverageOrderByCustomer()
+        {
+            return _customerRepository1.GetCustomersAverageOrder();
+        }
 
+        public List<CustomerLifetimeStatsDto> GetCustomerLifetimeStats()
+        {
+            return _customerRepository1.GetCustomerLifetimeStats();
+        }
+
+        public List<CustomerAggregateDto> GetCustomerAggregates()
+        {
+            return _customerRepository1.GetCustomerAggregates();
+        }
 
     }
 

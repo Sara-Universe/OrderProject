@@ -11,5 +11,7 @@ namespace SimpleExample.Models
 
         public Customer Customer { get; set; }
         public int CustomerId { get; set; }
+        public decimal CostAmount { get; set; }
+
     }
 }

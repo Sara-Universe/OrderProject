@@ -85,6 +85,39 @@ namespace SimpleExample.Controllers
             }
         }
 
+        [HttpGet("MonthlyProfit")]
+        public ActionResult<List<MonthlyProfitDto>> GetMonthlyProfit()
+        {
+            var result = _orderService.GetMonthlyProfit();
+            if (result == null || result.Count == 0)
+                return NotFound("No orders found.");
+
+            return Ok(result);
+        }
+
+        [HttpGet("AboveAverage")]
+        public IActionResult GetOrdersAboveCustomerAverage()
+        {
+            var result = _orderService.GetOrdersAboveCustomerAverage();
+            return Ok(result);
+        }
+
+        [HttpGet("MostRecentOrders")]
+        public ActionResult<List<RecentOrderDto>> GetMostRecentOrders()
+        {
+            var result = _orderService.GetMostRecentOrdersPerCustomer();
+            if (result == null || !result.Any())
+                return NotFound("No recent orders found.");
+
+            return Ok(result);
+        }
+
+        [HttpGet("DailySummary")]
+        public ActionResult<List<DailySummaryDto>> GetDailySummary()
+        {
+            var result = _orderService.GetDailySummary();
+            return Ok(result);
+        }
 
     }
 }

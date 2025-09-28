@@ -9,11 +9,12 @@ namespace SimpleExample.Repositories
     {
 
         private readonly MyDbContext _context;
-     
-        public CustomerRepository(MyDbContext context)
+        private readonly IConfiguration _configuration;
+
+        public CustomerRepository(MyDbContext context, IConfiguration configuration)
         {
             _context = context;
-            
+            _configuration = configuration;
         }
 
         public List<Customer> GetAll()
@@ -33,6 +34,49 @@ namespace SimpleExample.Repositories
                 {
                     Id = c.Id,
                     FullName = c.FullName
+                })
+                .ToList();
+        }
+
+        //Q4
+        public List<CustomerAverageDto> GetCustomersAverageOrder()
+        {
+            int minOrders = _configuration.GetValue<int>("Settings:MinOrders");
+            return _context.Customers
+                .Where(c => c.Orders.Count >= minOrders)
+                .Select(c => new CustomerAverageDto
+                {
+                    FullName = c.FullName,
+                    OrderCount = c.Orders.Count,
+                    AverageOrderValue = c.Orders.Average(o => o.TotalAmount)
+                })
+                .ToList();
+        }
+
+        //Q5
+        public List<CustomerLifetimeStatsDto> GetCustomerLifetimeStats()
+        {
+            return _context.Customers
+                .Select(c => new CustomerLifetimeStatsDto
+                {
+                    CustomerId = c.Id,
+                    FullName = c.FullName,
+                    TotalOrders = c.Orders.Count,
+                    TotalSpent = c.Orders.Sum(o => (decimal?)o.TotalAmount) ?? 0,
+                    LastOrderDate = c.Orders.Max(o => (DateTime?)o.OrderDate)    
+                })
+                .ToList();
+        }
+        //Q10
+        public List<CustomerAggregateDto> GetCustomerAggregates()
+        {
+            return _context.Customers
+                .Select(c => new CustomerAggregateDto
+                {
+                    CustomerId = c.Id,
+                    FullName = c.FullName,
+                    OrderCount = c.Orders.Count(),
+                    TotalSpent = c.Orders.Sum(o => (decimal?)o.TotalAmount) ?? 0
                 })
                 .ToList();
         }

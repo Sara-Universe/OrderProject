@@ -43,7 +43,8 @@ namespace SimpleExample.Data
                     OrderDate = new DateTime(2025, 9, 16),
                     TotalAmount = 100.50m,
                     Payment = PaymentMethod.Cash,
-                    CustomerId = 1
+                    CustomerId = 1,
+                    CostAmount = 60.00m
                 },
                 new Order
                 {
@@ -51,7 +52,8 @@ namespace SimpleExample.Data
                     OrderDate = new DateTime(2025, 9, 15),
                     TotalAmount = 250.00m,
                     Payment = PaymentMethod.CreditCard
-                    , CustomerId = 2
+                    , CustomerId = 2,
+                    CostAmount = 160.00m
                 },
                 new Order
                 {
@@ -59,7 +61,8 @@ namespace SimpleExample.Data
                     OrderDate = new DateTime(2025, 9, 14),
                     TotalAmount = 75.75m,
                     Payment = PaymentMethod.DigitalWallets
-                    , CustomerId = 1
+                    , CustomerId = 1,
+                    CostAmount = 100.00m
                 }
 
 

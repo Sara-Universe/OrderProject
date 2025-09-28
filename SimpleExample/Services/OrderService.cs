@@ -80,6 +80,25 @@ namespace SimpleExample.Services
             return customers;
         }
 
+        public List<MonthlyProfitDto> GetMonthlyProfit()
+        {
+            return _orderRepository1.GetMonthlyProfit();
+        }
 
+        public List<OrderDto> GetOrdersAboveCustomerAverage()
+        {
+           return _orderRepository1.GetOrdersAboveCustomerAverage();
+            
+        }
+
+        public List<RecentOrderDto> GetMostRecentOrdersPerCustomer()
+        {
+            return _orderRepository1.GetMostRecentOrdersPerCustomer();
+        }
+
+        public List<DailySummaryDto> GetDailySummary()
+        {
+            return _orderRepository1.GetDailySummary();
+        }
     }
 }

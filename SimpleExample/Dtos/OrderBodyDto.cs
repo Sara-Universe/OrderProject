@@ -17,5 +17,7 @@ namespace SimpleExample.Dtos
         public PaymentMethod Payment { get; set; }
         [Required(ErrorMessage = "CustomerId is required")]
         public int CustomerId { get; set; }
+
+        public decimal CostAmount { get; set; }
     }
 }

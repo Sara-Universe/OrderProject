@@ -66,5 +66,33 @@ namespace SimpleExample.Controllers
             }
         }
 
+        [HttpGet("AverageOrders")]
+        public ActionResult<List<CustomerAverageDto>> GetAverageOrders()
+        {
+            var result = _customerService.GetAverageOrderByCustomer();
+
+            if (!result.Any())
+                return NotFound("No customers found with at least 3 orders.");
+
+            return Ok(result);
+        }
+
+        [HttpGet("LifetimeStats")]
+        public ActionResult<List<CustomerLifetimeStatsDto>> GetCustomerLifetimeStats()
+        {
+            var result = _customerService.GetCustomerLifetimeStats();
+
+            if (!result.Any())
+                return NotFound("No customer data found.");
+
+            return Ok(result);
+        }
+
+        [HttpGet("Aggregates")]
+        public ActionResult<List<CustomerAggregateDto>> GetCustomerAggregates()
+        {
+            var result = _customerService.GetCustomerAggregates();
+            return Ok(result);
+        }
     }
 }
