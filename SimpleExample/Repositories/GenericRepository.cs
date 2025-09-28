@@ -17,9 +17,9 @@ namespace SimpleExample.Repositories
 
         public List<T> GetAll()
         {
-            // return _dbSet.AsNoTracking().ToList();
-            var list = _dbSet.FromSqlRaw($"EXEC GetAllOrders").AsNoTracking();
-            return [.. list];
+             return _dbSet.AsNoTracking().ToList();
+            //var list = _dbSet.FromSqlRaw($"EXEC GetAllOrders").AsNoTracking();
+            //return [.. list];
         }
         public T? GetById(int id)
         {
@@ -41,5 +41,7 @@ namespace SimpleExample.Repositories
             _dbSet.Remove(entity);
             _context.SaveChanges();
         }
+
+   
     }
 }
