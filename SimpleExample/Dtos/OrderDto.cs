@@ -8,7 +8,7 @@ namespace SimpleExample.Dtos
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
-        public PaymentMethod Payment { get; set; }
+        public int PaymentMethodId { get; set; }
         public int CustomerId { get; set; }
         public decimal CostAmount { get; set; }
     }

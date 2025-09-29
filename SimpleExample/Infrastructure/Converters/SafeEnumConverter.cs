@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace SimpleExample.Infrastructure.Converters
 {
+    //i used it with enums, but when i replace enum with lookups i didnot used it anymore
     public class SafeEnumConverter<TEnum> : JsonConverter<TEnum> where TEnum : struct, Enum
     {
         public override TEnum Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

@@ -75,11 +75,11 @@ builder.Services.AddScoped<CustomerRepository>();
 builder.Services.AddScoped<OrderRepository>();
 // Add services to the container.
 
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(new SafeEnumConverter<PaymentMethod>());
-    });
+builder.Services.AddControllers();
+    //.AddJsonOptions(options =>
+    //{
+    //    options.JsonSerializerOptions.Converters.Add(new SafeEnumConverter<PaymentMethod>());
+    //});
 
 builder.Services.AddOpenApi();
 

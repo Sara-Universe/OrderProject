@@ -99,7 +99,7 @@ namespace SimpleExample.Repositories
                             Id = o.Id,
                             OrderDate = o.OrderDate,
                             TotalAmount = o.TotalAmount,
-                            Payment = o.Payment,
+                            PaymentMethodId = o.PaymentMethodId,
                             CustomerId = o.CustomerId,
                             CostAmount = o.CostAmount
                         };

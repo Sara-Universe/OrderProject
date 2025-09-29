@@ -1,4 +1,5 @@
 ﻿using SimpleExample.Enums;
+using SimpleExample.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace SimpleExample.Dtos
@@ -12,9 +13,9 @@ namespace SimpleExample.Dtos
         [Range(0, double.MaxValue, ErrorMessage = "Total amount must be 0 or greater")]
         public decimal TotalAmount { get; set; }
 
-        [Required(ErrorMessage = "Status is required")]
-        [EnumDataType(typeof(PaymentMethod), ErrorMessage = "Invalid order status")]
-        public PaymentMethod Payment { get; set; }
+        public int PaymentMethodId { get; set; }       
+      
+
         [Required(ErrorMessage = "CustomerId is required")]
         public int CustomerId { get; set; }
 
